@@ -1,8 +1,15 @@
-let head = document.getElementById('head');
+const priceInput = document.getElementById('coffee-price');
+const quantity = document.getElementById('coffee-quantity');
+const confirmBtn = document.getElementById('confirm-order');
+const resultDiv = document.getElementById('result');
+const errorBox = document.getElementById('error');
 
-console.log(head);
+// FN-1 : Parse Array String -> Array Number
+const parseInputs = (...input) => {
+    return input.map((str) => parseInt(str));
+};
 
-// const myHead = React.createElement('h1', null, 'HI');
-const myHead = <h1>Hi ${5 + 2}</h1>;
-
-console.log(myHead);
+// FN- : Hide Error
+const hideErrors = () => {
+    errorBox.classList.add('invisible');
+};
