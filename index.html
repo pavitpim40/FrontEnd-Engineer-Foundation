@@ -52,7 +52,7 @@
             </div>
             <div class="col">
                 <form class="row gy-3 mt-5">
-                    <h1 class="text-center mt-5" id="head">Ethiopia - Yirgacheffe</h1>
+                    <h1 class="text-center my-5" id="head">Ethiopia - Yirgacheffe</h1>
                     <!-- <div class="input-group input-group-md mb-3">
                         <span class="input-group-text" id="inputGroup-sizing-sm">Price</span>
                         <input
@@ -69,6 +69,7 @@
                         <input
                             type="text"
                             class="form-control"
+                            id="product-price"
                             placeholder="price"
                             aria-label="price"
                         />
@@ -76,6 +77,7 @@
                         <input
                             type="text"
                             class="form-control"
+                            id="product-quantity"
                             placeholder="quantity"
                             aria-label="quantity"
                         />
@@ -85,7 +87,7 @@
                         <span class="input-group-text" id="inputGroup-sizing-sm">$$</span>
                         <input
                             type="text"
-                            id="coffee-quantity"
+                            id="product-shipping"
                             class="form-control"
                             placeholder="shipping"
                             aria-label="Sizing example input"
@@ -96,20 +98,18 @@
                         <div class="alert alert-danger w-100" id="error" role="alert"></div>
                     </div>
                     <div class="px-3">
-                        <button id="order-confirm" class="btn btn-primary w-100">
-                            Create order
-                        </button>
+                        <button id="total-price" class="btn btn-primary w-100">Total</button>
                     </div>
                 </form>
             </div>
         </main>
 
         <!-- TOTAL -->
-        <div class="card mt-5">
+        <div class="card mt-2">
             <div class="card-body">Total: <span id="result"></span></div>
         </div>
 
         <!-- SCRIPT -->
-        <script src="index.js" type="text/babel"></script>
+        <script src="index.js"></script>
     </body>
 </html>
