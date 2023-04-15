@@ -34,3 +34,8 @@
 -   ย้ายเนื้อหาในไฟล์และ export ออกมา
 -   แก้ script ใน html ให้ link ไปที่ dist/main.js
 -   ทดสอบการใช้งาน app
+
+## Step 3.2 : Loader
+
+-   CSS-Loader : Can import CSS in JS
+-   STYLE-Loader : Append style to HTML

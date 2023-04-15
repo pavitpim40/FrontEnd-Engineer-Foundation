@@ -1,3 +1,4 @@
+import './index.css';
 import { ErrorService } from './app/error.service';
 import { ComponentService } from './app/component.service';
 import { runApp } from './app/app';
