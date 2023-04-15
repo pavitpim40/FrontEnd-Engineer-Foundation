@@ -1,0 +1,16 @@
+{
+    "name": "frontend-foundation",
+    "version": "1.0.0",
+    "description": "about fundamental of frontend",
+    "main": "index.js",
+    "scripts": {},
+    "author": "pavit pimchangul",
+    "license": "MIT",
+    "dependencies": {
+        "bootstrap": "^5.2.3"
+    },
+    "devDependencies": {
+        "webpack": "^5.79.0",
+        "webpack-cli": "^5.0.1"
+    }
+}
