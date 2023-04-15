@@ -39,3 +39,12 @@
 
 -   CSS-Loader : Can import CSS in JS
 -   STYLE-Loader : Append style to HTML
+-   bootstrap import in css file
+-   install sass-loader
+
+## Step 3.3 : Boostrap Override
+
+-   install sass
+-   write file scss for override
+-   edit test rule
+-   try primary-color : teal ,#C67C4D
