@@ -20,7 +20,7 @@
 -   สร้าง gitignore
 -   ลอง Push ขึ้น git
 
-## Step 3.0
+## Step 3.0 : Webpack Bundler and Dependency Management
 
 -   update start script เป็น webpack
 -   npm start ดูไฟล์ dist
@@ -48,3 +48,19 @@
 -   write file scss for override
 -   edit test rule
 -   try primary-color : teal ,#C67C4D
+
+## Step 4.1 : Plugin - HTML
+
+-   https://github.com/jantimon/html-webpack-plugin#options
+-   ลอง install และใช้ แบบไม่มี template ก่อน -> Bundle it
+-   ใส่ ref template
+-   ใส่ hash ให้ file.js
+
+## Step 5 : HTML Loader for Image
+
+-   npm i html-loader
+-   build
+-   config-path
+-   assetModuleFilename: 'images/[hash][ext][query]',
+
+## STEP 6 : Multiple Entry point
