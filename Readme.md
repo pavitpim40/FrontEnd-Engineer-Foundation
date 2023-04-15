@@ -70,3 +70,19 @@
 -   ทำ Dev-server, hot reload
 
 ## STEP 7 : Multiple config
+
+```js
+const path = require('path');
+const { merge } = require('webpack-merge');
+const commonConfig = require('./webpack.config');
+
+module.exports = merge(commonConfig, {
+    mode: 'development',
+    plugins: [],
+    module: {
+        rules: [],
+    },
+});
+```
+
+-   ย้าย rule css,html ไปทั้ง 2 ไฟล์
