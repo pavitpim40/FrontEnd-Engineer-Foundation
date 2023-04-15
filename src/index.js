@@ -1,6 +1,8 @@
-// ESMODULE : ES6
-import validateInput from './utils/validate-inputs';
+import { ErrorService } from './app/error.service';
+import { ComponentService } from './app/component.service';
+import { runApp } from './app/app';
 
-alert('Hi');
+const errorService = new ErrorService();
+const componentService = new ComponentService();
 
-validateInput([1, 2, 3, 4, 5]);
+runApp(errorService, componentService);

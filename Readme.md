@@ -27,4 +27,10 @@
 -   ลอง `npx webpack-cli`
 -   สร้าง wepack.config.js มาแล้ว config
 -   ไล่จาก mode,entry,output
--   ลองใส่ --config webpack.config.js
+-   ลองใส่ --config webpack.config.js ใน script
+
+## Step 3.1 : Separate JS-INTO-MODULE(FILE)
+
+-   ย้ายเนื้อหาในไฟล์และ export ออกมา
+-   แก้ script ใน html ให้ link ไปที่ dist/main.js
+-   ทดสอบการใช้งาน app

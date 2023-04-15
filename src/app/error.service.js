@@ -1,4 +1,4 @@
-class ErrorService {
+export class ErrorService {
     constructor() {
         this.errorBox = document.getElementById('error');
     }
