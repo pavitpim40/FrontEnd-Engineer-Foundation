@@ -26,3 +26,5 @@
 -   npm start ดูไฟล์ dist
 -   ลอง `npx webpack-cli`
 -   สร้าง wepack.config.js มาแล้ว config
+-   ไล่จาก mode,entry,output
+-   ลองใส่ --config webpack.config.js

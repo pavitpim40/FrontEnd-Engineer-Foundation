@@ -4,7 +4,7 @@
     "description": "about fundamental of frontend",
     "main": "index.js",
     "scripts": {
-        "start": "webpack",
+        "start": "webpack --config webpack.config.js",
         "dev": "ls -l",
         "build": "ls -la"
     },
