@@ -6,6 +6,8 @@
 
 ## Step 1.3 : Refractor for multiple Script
 
+-   intro nightmare from import multiple
+
 ## Step 2.0 : Node Project & Package Manager & script & package.json,package-lock.json, NodeModule
 
 -   package.json , script in package.json
@@ -42,7 +44,7 @@
 -   bootstrap import in css file
 -   install sass-loader
 
-## Step 3.3 : Boostrap Override
+## Step 3.3 : Bootstrap Override
 
 -   install sass
 -   write file scss for override
@@ -88,3 +90,24 @@ module.exports = merge(commonConfig, {
 -   ย้าย rule css,html ไปทั้ง 2 ไฟล์
 
 ## STEP 7.2 : Extract CSS
+
+-   follow docs
+
+## STEP 7.3 : Opimization
+
+```js
+   optimization: {
+        minimizer: [
+            new TerserPlugin(),
+            new CssMinimizerPlugin(),
+            new HtmlWebpackPlugin({
+                template: './src/template/index.html',
+                minify: {
+                    removeAttributeQuotes: true,
+                    collapseWhitespace: true,
+                    removeComments: true,
+                },
+            }),
+        ],
+    },
+```

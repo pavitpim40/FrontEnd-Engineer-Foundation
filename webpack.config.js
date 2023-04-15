@@ -1,6 +1,3 @@
-// Node-Module
-const path = require('path');
-
 // CommonJS : Node App
 module.exports = {
     entry: {
@@ -18,8 +15,6 @@ module.exports = {
     },
 
     output: {
-        filename: '[name].[hash].js',
-        path: path.resolve(__dirname, 'dist'),
         assetModuleFilename: 'images/[hash][ext][query]',
     },
 };
