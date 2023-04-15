@@ -14,7 +14,15 @@
 -   `npm install --save bootstrap` ดู package.json , node_modules
 -   `npm install --save-dev webpack`
 -   `npm install -D webpack-cli`
+-   ลอง script: start,dev,build
 -   ลอง uninstall , install ลงใหม่
 -   git init
 -   สร้าง gitignore
 -   ลอง Push ขึ้น git
+
+## Step 3.0
+
+-   update start script เป็น webpack
+-   npm start ดูไฟล์ dist
+-   ลอง `npx webpack-cli`
+-   สร้าง wepack.config.js มาแล้ว config

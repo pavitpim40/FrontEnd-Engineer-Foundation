@@ -3,7 +3,11 @@
     "version": "1.0.0",
     "description": "about fundamental of frontend",
     "main": "index.js",
-    "scripts": {},
+    "scripts": {
+        "start": "webpack",
+        "dev": "ls -l",
+        "build": "ls -la"
+    },
     "author": "pavit pimchangul",
     "license": "MIT",
     "dependencies": {
