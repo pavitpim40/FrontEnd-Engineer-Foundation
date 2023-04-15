@@ -63,4 +63,10 @@
 -   config-path
 -   assetModuleFilename: 'images/[hash][ext][query]',
 
-## STEP 6 : Multiple Entry point
+## STEP 6 : Multiple Entry point,Clean, Web-server
+
+-   add more entrypoint, change to dynamics name
+-   bundle ดูว่าถ้าแก้ code แล้วไม่มี clean จะเป็นไง
+-   ทำ Dev-server, hot reload
+
+## STEP 7 : Multiple config

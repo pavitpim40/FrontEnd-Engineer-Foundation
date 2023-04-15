@@ -1,13 +1,17 @@
 // Node-Module
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 // CommonJS : Node App
 module.exports = {
     mode: 'development',
-    entry: './src/index.js',
+    entry: {
+        main: './src/index.js',
+        vendor: './src/vendor.js',
+    },
     output: {
-        filename: 'main.[hash].js',
+        filename: '[name].[hash].js',
         path: path.resolve(__dirname, 'dist'),
         assetModuleFilename: 'images/[hash][ext][query]',
     },
@@ -26,8 +30,11 @@ module.exports = {
     },
 
     plugins: [
+        new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: './src/template/index.html',
         }),
     ],
+
+    optimization: { runtimeChunk: 'single' },
 };
