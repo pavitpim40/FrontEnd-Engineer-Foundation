@@ -4,9 +4,9 @@
     "description": "about fundamental of frontend",
     "main": "index.js",
     "scripts": {
-        "start": "webpack --config webpack.config.js",
-        "dev": "webpack serve  --hot",
-        "build": "ls -la"
+        "start": "webpack serve  --hot --config webpack.dev.js",
+        "dev": "webpack serve  --hot --config webpack.dev.js",
+        "build": "webpack --config webpack.prod.js"
     },
     "author": "pavit pimchangul",
     "license": "MIT",

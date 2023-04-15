@@ -69,7 +69,7 @@
 -   bundle ดูว่าถ้าแก้ code แล้วไม่มี clean จะเป็นไง
 -   ทำ Dev-server, hot reload
 
-## STEP 7 : Multiple config
+## STEP 7.1 : Multiple config
 
 ```js
 const path = require('path');
@@ -86,3 +86,5 @@ module.exports = merge(commonConfig, {
 ```
 
 -   ย้าย rule css,html ไปทั้ง 2 ไฟล์
+
+## STEP 7.2 : Extract CSS

@@ -1,7 +1,5 @@
 // Node-Module
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 // CommonJS : Node App
 module.exports = {
