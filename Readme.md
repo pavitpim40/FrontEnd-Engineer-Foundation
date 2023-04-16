@@ -211,7 +211,7 @@ body {
 -   **ST6** : Deploy with netlify
     <br>
 
-# TASK-2 : Refractor to Multiple JS FILE
+# TASK-2 : Refactor to Multiple JS FILE
 
 -   **ST1** : create `src` folder and sub-folder `app` `services` `utils`
 -   **ST2** : Move all code to app.js and relink in index.html
@@ -330,70 +330,377 @@ runApp(errorService, componentService);
 <script src="./src/app/app.js"></script>
 ```
 
-## Step 2.0 : Node Project & Package Manager & script & package.json,package-lock.json, NodeModule
+# TASK 3 : Set up Node Project
 
--   package.json , script in package.json
--   node_modules replace CDN
--   ไป ดู npm registry
--   `npm install --save bootstrap` ดู package.json , node_modules
--   `npm install --save-dev webpack`
--   `npm install -D webpack-cli`
--   ลอง script: start,dev,build
--   ลอง uninstall , install ลงใหม่
--   git init
--   สร้าง gitignore
--   ลอง Push ขึ้น git
+-   **ST-1** : for create node project using command `npm init`
+-   **ST-2** : explore script in package.json
 
-## Step 3.0 : Webpack Bundler and Dependency Management
+```json
+{
+    "name": "frontend-foundation",
+    "version": "1.0.0",
+    "description": "about fundamental of frontend",
+    "main": "index.js",
+    "scripts": {
+        "start" : "ls",
+        "dev" : "ls -l",
+        "build" : "ls -la
+    },
+    "author": "pavit pimchangul",
+    "license": "MIT"
+}
+```
 
--   update start script เป็น webpack
--   npm start ดูไฟล์ dist
--   ลอง `npx webpack-cli`
--   สร้าง wepack.config.js มาแล้ว config
--   ไล่จาก mode,entry,output
--   ลองใส่ --config webpack.config.js ใน script
+-   **ST-3** : install dependencies by using command `npm install`
+    -   go to npm registry
+    -   dependencies
+        -   `npm install --save bootstrap` or
+        -   `npm i bootstrap`
+    -   dev-dependencies
+        -   `npm install --save-dev webpack`
+        -   `npm install -D webpack-cli`
+    -   delete `node_module` and run `npm install` again
+-   **ST-4** : discussion about `node_modules` and `.gitignore`
+-   **ST-5** : `git init` and link with your github repo
+-   **ST-6** : discussion with other package manager `yarn` ,`pnpm`
 
-## Step 3.1 : Separate JS-INTO-MODULE(FILE)
+# TASK 4 : Basic Webpack (Bundle and Manage Dependencies)
 
--   ย้ายเนื้อหาในไฟล์และ export ออกมา
--   แก้ script ใน html ให้ link ไปที่ dist/main.js
--   ทดสอบการใช้งาน app
+-   **ST-0** : create mock `index.js` in `src` and write some js code
+-   **ST-1** : `npx webpack-cli` and see result
+-   **ST-2** : set up to `npm start` script just `webpack`
+-   **ST-3** : create `webpack.config.js` in root folder
+-   **ST-4** : basic config with `mode`, `entry` , `output`
 
-## Step 3.2 : Loader
+```js
+const path = require('path');
 
--   CSS-Loader : Can import CSS in JS
--   STYLE-Loader : Append style to HTML
--   bootstrap import in css file
--   install sass-loader
+// CommonJS : Node App
+module.exports = {
+    mode: 'development',
+    entry: './src/index.js',
+    output: {
+        filename: 'main.js',
+        path: path.resolve(__dirname, 'dist'),
+    },
+};
+```
 
-## Step 3.3 : Bootstrap Override
+-   **ST-5** : try to bundle code with mock `index.js` in `src`
+    -   see output in `dist` folder
+    -   change config and bundle again eg. `mode:"production`,`filename`,`path`
 
--   install sass
--   write file scss for override
--   edit test rule
--   try primary-color : teal ,#C67C4D
+```js
+// ESMODULE : ES6
+import validateInput from './utils/validate-inputs';
 
-## Step 4.1 : Plugin - HTML
+alert('Hi');
 
--   https://github.com/jantimon/html-webpack-plugin#options
--   ลอง install และใช้ แบบไม่มี template ก่อน -> Bundle it
--   ใส่ ref template
--   ใส่ hash ให้ file.js
+validateInput([1, 2, 3, 4, 5]);
+```
 
-## Step 5 : HTML Loader for Image
+-   **ST-6** : Refactor
+    -   using `import`, `export` in your source
+    -   bundle again
 
--   npm i html-loader
--   build
--   config-path
--   assetModuleFilename: 'images/[hash][ext][query]',
+```js
+// index.js
 
-## STEP 6 : Multiple Entry point,Clean, Web-server
+import { ErrorService } from './app/error.service';
+import { ComponentService } from './app/component.service';
+import { runApp } from './app/app';
 
--   add more entrypoint, change to dynamics name
--   bundle ดูว่าถ้าแก้ code แล้วไม่มี clean จะเป็นไง
--   ทำ Dev-server, hot reload
+const errorService = new ErrorService();
+const componentService = new ComponentService();
 
-## STEP 7.1 : Multiple config
+runApp(errorService, componentService);
+```
+
+-   **ST-7**
+    -   Relink you index.html with one single script in `dist`
+    -   test your app
+-   **ST-8 (optional)** : try to add `--config webpack.config.js` in script
+
+# TASK-5 : Loader (CSS)
+
+-   **ST-1** : ทำให้ import css เข้าไปใน js ได้
+    -   create `index.css` and move your code to this file
+    -   delete old .css and remove link from html
+    -   `import './index.css'` in your `index.js` file, try to bundle
+    -   `npm i -D css-loader` สำหรับ include css in js
+    -   `npm i -D style-loader` สำหรับ link css เข้ากับ html
+    -   config rules in webpack -> bundle -> see your app
+
+```js
+module.exports = {
+    mode: 'development',
+    entry: './src/index.js',
+    output: {
+        filename: 'main.js',
+        path: path.resolve(__dirname, 'dist'),
+    },
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: [
+                    'style-loader', // append <link > in html
+                    'css-loader', // allow import '.index.css'
+                ],
+            },
+        ],
+    },
+};
+```
+
+-   **ST-2** : ทำให้เขียน scss ได้ & override bootstrap
+    -   change you filename to `.scss` and edit `import` statement
+    -   `npm i -D sass sass-loader`
+    -   add more rules in `webpack.config.js`
+    -   import bootstrap and override primary color
+    -   now can remove bootstrap cdn from `index.html`
+
+```js
+// Node-Module
+const path = require('path');
+
+// CommonJS : Node App
+module.exports = {
+    mode: 'development',
+    entry: './src/index.js',
+    output: {
+        filename: 'main.js',
+        path: path.resolve(__dirname, 'dist'),
+    },
+
+    module: {
+        rules: [
+            {
+                test: /\.s?css$/,
+                use: ['style-loader', 'css-loader', 'sass-loader'],
+            },
+        ],
+    },
+};
+```
+
+```css
+/* style.scss */
+$primary: #c67c4d;
+@import '~bootstrap/scss/bootstrap';
+```
+
+# TASK-6 : Plugin (HTML,Clean) & Dynamics name output
+
+-   **ST-0** : auto generate new js file name
+    -   using hash for js
+    -   bundle file -> see result
+    -   need to relink in html ?
+
+```js
+module.exports = {
+    mode: 'development',
+    entry: './src/index.js',
+    output: {
+        filename: 'main.[hash].js',
+        path: path.resolve(__dirname, 'dist'),
+    },
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: [
+                    'style-loader', // append <link > in html
+                    'css-loader', // allow import '.index.css'
+                ],
+            },
+        ],
+    },
+};
+```
+
+-   **ST-1** : `npm i -D html-webpack-plugin` [docs](https://github.com/jantimon/html-webpack-plugin#options)
+-   **ST-2** : add plugin in `webpack.config.js` and bundle it -> see result
+
+```js
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+    mode: 'development',
+    entry: './src/index.js',
+    output: {
+        filename: 'main.js',
+        path: path.resolve(__dirname, 'dist'),
+    },
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: [
+                    'style-loader', // append <link > in html
+                    'css-loader', // allow import '.index.css'
+                ],
+            },
+        ],
+
+     plugins: [
+        new HtmlWebpackPlugin(),
+    },
+
+```
+
+-   **ST-3** : path option
+    -   ใส่ option ให้ plugin
+    -   ย้ายไฟล์ index.html เราไปอยู่ในโฟลเดอร์ `template`
+    -   bundle -> see result
+
+```js
+ plugins: [
+        new HtmlWebpackPlugin({
+            template: './src/template/index.html',
+        }),
+    },
+```
+
+-   **ST-4** : remove old js file with clean plugin
+    -   `npm i -D clean-webpack-plugin`
+    -   config rule and bundle it
+
+```diff
++ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+
+ plugins: [
++        new CleanWebpackPlugin(),
+         new HtmlWebpackPlugin({
+            template: './src/template/index.html',
+        }),
+    ],
+```
+
+# TASK-7 : Loader (Image)
+
+-   **ST-1** : ย้าย folder `assets` มาไว้ใน `src` -> เกิดปัญหาเรื่อง link
+-   **ST-2** : `npm i -D html-loader`
+-   **ST-3** : config rule and bundle-it
+
+```diff
+
+    output : {
++       assetModuleFilename: 'images/[hash][ext][query]',
+    }
+    module:[
+        {
+            test: /\.s?css$/,
+            use: ['style-loader', 'css-loader', 'sass-loader'],
+        },
++       {
++           test: /\.html$/,
++           use: ['html-loader'],
++        },
+    ],
+```
+
+# TASK-8 : Multiple Entry point
+
+-   **ST-1** : multiple entry point
+    -   create file `vendor.js` in root
+    -   import bootstrap
+    -   edit rule in `webpack.config.json` and bundle it
+
+```js
+// vendor.js
+import 'bootstrap';
+```
+
+```diff
+# webpack.config.js
+
+    output: {
++        filename: '[name].[hash].js'
+    }
+    entry: {
+        main: './src/index.js',
++       vendor: './src/vendor.js',
+    },
+```
+
+# TASK-9 : Dev server
+
+-   **ST-1** : `npm i -D webpack-dev-server`
+-   **ST-2** : edit script for `dev`
+-   **ST-3** : remove dist folder
+-   **ST-4** : `npm run dev`
+
+```diff
+# package.json
+{
+    "main": "index.js",
+    "scripts": {
+        "start": "webpack --config webpack.config.js",
++        "dev": "webpack serve  --hot",
+    },
+    "devDependencies": {
++       "webpack-dev-server": "^4.13.3"
+    }
+
+```
+
+# TASK-10 : Multiple Config
+
+-   **ST-1** : `npm i -D webpack-merge`
+-   **ST-2** : create `webpack.dev.js` and `webpack.prod.js`
+
+```js
+// webpack.config.js
+module.exports = {
+    entry: {
+        main: './src/index.js',
+        vendor: './src/vendor.js',
+    },
+
+    module: {
+        rules: [
+            {
+                test: /\.html$/,
+                use: ['html-loader'], //image
+            },
+        ],
+    },
+
+    output: {
+        assetModuleFilename: 'images/[hash][ext][query]',
+    },
+};
+```
+
+```js
+//  `webpack.dev.js`
+const path = require('path');
+const { merge } = require('webpack-merge');
+const commonConfig = require('./webpack.config');
+
+module.exports = merge(commonConfig, {
+    mode: 'development',
+    output: {
+        filename: '[name].[hash].js',
+    },
+    plugins: [
+        new CleanWebpackPlugin(),
+        new HtmlWebpackPlugin({
+            template: './src/template/index.html',
+        }),
+    ],
+    module: {
+        rules: [
+            {
+                test: /\.s?css$/,
+                use: ['style-loader', 'css-loader', 'sass-loader'],
+            },
+        ],
+    },
+});
+```
 
 ```js
 const path = require('path');
@@ -401,21 +708,77 @@ const { merge } = require('webpack-merge');
 const commonConfig = require('./webpack.config');
 
 module.exports = merge(commonConfig, {
-    mode: 'development',
-    plugins: [],
+    mode: 'production',
+    output: {
+        filename: '[name].[hash].min.js',
+        path: path.resolve(__dirname, 'docs'),
+    },
+    plugins: [
+        new CleanWebpackPlugin(),
+        new HtmlWebpackPlugin({
+            template: './src/template/index.html',
+        }),
+    ],
     module: {
-        rules: [],
+        rules: [
+            {
+                test: /\.s?css$/,
+                use: ['style-loader', 'css-loader', 'sass-loader'],
+            },
+        ],
     },
 });
 ```
 
--   ย้าย rule css,html ไปทั้ง 2 ไฟล์
+-   **ST-3** edit `dev` and `build` script
 
-## STEP 7.2 : Extract CSS
+```diff
+# package.json
 
--   follow docs
++   "dev": "webpack serve  --hot --config webpack.dev.js",
++    "build": "webpack --config webpack.prod.js"
+```
 
-## STEP 7.3 : Opimization
+-   **ST-4** : remove clean plugin from `webpack.dev.js` => no need
+
+# TASK-11 : Extract CSS
+
+-   **ST-1** `npm -i -D mini-css-extract-plugin`
+-   **ST-2** edit `webpack.prod.js`
+
+```diff
+
++ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+module.exports = merge(commonConfig, {
+    mode: 'production',
+    output: {
+        filename: '[name].[hash].min.js',
+        path: path.resolve(__dirname, 'docs'),
+    },
+    plugins: [
++        new MiniCssExtractPlugin(),
+        new CleanWebpackPlugin(),
+        new HtmlWebpackPlugin({
+                template: './src/template/index.html'
+            }
+        ],
+    module: {
+        rules: [
+            {
+                test: /\.s?css$/,
++               use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+            },
+        ],
+    },
+
+});
+
+```
+
+-   **ST-3** : build
+
+# TASK-12 : Optimization
 
 ```js
    optimization: {
@@ -433,3 +796,5 @@ module.exports = merge(commonConfig, {
         ],
     },
 ```
+
+# TASK-13 : Continuous Deploy
