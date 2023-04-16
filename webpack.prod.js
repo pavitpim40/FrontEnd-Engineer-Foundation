@@ -11,7 +11,7 @@ module.exports = merge(commonConfig, {
     mode: 'production',
     output: {
         filename: '[name].[hash].min.js',
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'docs'),
     },
     plugins: [new MiniCssExtractPlugin(), new CleanWebpackPlugin()],
     module: {
